@@ -38,6 +38,9 @@ public class Accounts {
 
         List<Wallet> walletsWithHighestTrans = new ArrayList<>();
 
+        if(accountsList==null)
+            return;
+
         Integer max1 = Integer.MIN_VALUE;
         Integer max2 = Integer.MIN_VALUE;
         Integer max3 = Integer.MIN_VALUE;
@@ -66,14 +69,24 @@ public class Accounts {
         }
         walletsWithHighestTrans.add(walletWithMaxVal);
 
+        if(walletsWithHighestTrans==null || walletsWithHighestTrans.size() ==0){
+            return;
+        }
+
         Wallet wallet = walletsWithHighestTrans.get(0);
         wallet.setCurrBalance(wallet.getCurrBalance().add(new BigDecimal(10)));
+        System.out.println("new user balance for user1 : "+wallet.getCurrBalance());
 
+        if(walletsWithHighestTrans.get(1)!=null){
         wallet = walletsWithHighestTrans.get(1);
         wallet.setCurrBalance(wallet.getCurrBalance().add(new BigDecimal(5)));
-        wallet = walletsWithHighestTrans.get(2);
-        wallet.setCurrBalance(wallet.getCurrBalance().add(new BigDecimal(2)));
+        }
+        System.out.println("new user balance for user2 : "+wallet.getCurrBalance());
 
-
+        if(walletsWithHighestTrans.get(2)!=null) {
+            wallet = walletsWithHighestTrans.get(2);
+            wallet.setCurrBalance(wallet.getCurrBalance().add(new BigDecimal(2)));
+        }
+        System.out.println("new user balance for user3 : "+wallet.getCurrBalance());
     }
 }
